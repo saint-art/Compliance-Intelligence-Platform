@@ -1,0 +1,79 @@
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ================================
+# Virtual environments
+# ================================
+venv/
+.venv/
+env/
+ENV/
+
+# ================================
+# Environment / secrets
+# ================================
+.env
+.env.*
+!.env.example
+
+# ================================
+# Testing / coverage
+# ================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# ================================
+# Logs
+# ================================
+logs/
+*.log
+
+# ================================
+# Local databases
+# ================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ================================
+# IDE / editor
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ================================
+# Temporary files
+# ================================
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# ================================
+# Generated / diagnostic artifacts
+# ================================
+*.html
+*.csv
+
+# Keep documentation Markdown files
+!docs/**/*.md
+
+# Keep intentional project documentation
+!README.md
+
+# ================================
+# Local development artifacts
+# ================================
+backup/
