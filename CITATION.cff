@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Compliance Intelligence Platform"
+message: "If you use this software or research in your work, please cite 
+it using the information below."
+type: software
+
+authors:
+  - family-names: "Mwendwa"
+    given-names: "Nelvin"
+
+repository-code: 
+"https://github.com/saint-art/Compliance-Intelligence-Platform"
+
+url: "https://github.com/saint-art/Compliance-Intelligence-Platform"
+
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22232969"
+
+keywords:
+  - compliance intelligence
+  - data ingestion
+  - web data collection
+  - institutional data
+  - Python
+  - data normalization
+  - entity resolution
+  - data provenance
+  - Kenya
+  - public sector data
+
+license: MIT

@@ -1,5 +1,7 @@
 # Compliance Intelligence Platform
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22232969.svg)](https://doi.org/10.5281/zenodo.22232969)
+
 An extensible data intelligence platform for collecting, normalizing, 
 resolving, validating, and analyzing publicly available institutional 
 information.
@@ -35,6 +37,24 @@ information from the Parliament of Kenya, beginning with National Assembly
 member data.
 
 ---
+
+## Publication
+
+This project is accompanied by a research and software publication 
+describing the
+architecture, engineering approach, data-ingestion methodology, and 
+development
+considerations of the platform.
+
+**DOI:** https://doi.org/10.5281/zenodo.22232969
+
+**Repository:** 
+https://github.com/saint-art/Compliance-Intelligence-Platform
+
+The published record provides a persistent scholarly reference for the 
+project
+and its associated research output.
+
 
 ## Architecture
 
