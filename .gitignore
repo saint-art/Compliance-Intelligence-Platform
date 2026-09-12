@@ -66,6 +66,7 @@ logs/
 # ================================
 *.html
 *.csv
+!output/*.csv
 
 # Keep documentation Markdown files
 !docs/**/*.md

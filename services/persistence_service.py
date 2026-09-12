@@ -4,25 +4,16 @@ from loaders.person_repository import PersonRepository
 from loaders.position_repository import PositionRepository
 from loaders.institution_repository import InstitutionRepository
 from loaders.person_position_repository import PersonPositionRepository
+from loaders.source_repository import SourceRepository
 
 from resolvers.relationship_resolver import RelationshipResolver
+
+from models.source import Source
 
 
 class PersistenceService:
 
     def __init__(self, connection=None):
-
-        # -----------------------------------------------------
-        # DATABASE CONNECTION
-        # -----------------------------------------------------
-        #
-        # If a connection is supplied by the caller, this
-        # service participates in the caller's transaction.
-        #
-        # Otherwise, the service creates its own connection
-        # for standalone use.
-        #
-        # -----------------------------------------------------
 
         self._owns_connection = connection is None
 
@@ -30,14 +21,6 @@ class PersistenceService:
             self.connection = DatabaseManager.connect()
         else:
             self.connection = connection
-
-        # -----------------------------------------------------
-        # SHARED REPOSITORIES
-        # -----------------------------------------------------
-        #
-        # Every repository operates on the same connection.
-        #
-        # -----------------------------------------------------
 
         self.person_repository = PersonRepository(
             self.connection
@@ -57,17 +40,44 @@ class PersistenceService:
             )
         )
 
+        self.source_repository = SourceRepository(
+            self.connection
+        )
+
         self.relationship_resolver = (
             RelationshipResolver()
         )
 
+    def _get_source_document_url(self, document_id, cache):
+        """
+        Look up a source_document's URL by its document_id,
+        caching results within this persist() call so a batch
+        of relationships sharing the same document only costs
+        one query.
+        """
+
+        if document_id in cache:
+            return cache[document_id]
+
+        cursor = self.connection.cursor()
+
+        cursor.execute(
+            "SELECT source_url FROM source_documents "
+            "WHERE document_id = ?",
+            (document_id,)
+        )
+
+        row = cursor.fetchone()
+
+        url = row["source_url"] if row else ""
+
+        cache[document_id] = url
+
+        return url
+
     def persist(self, parser_result):
 
         try:
-
-            # -------------------------------------------------
-            # INSTITUTIONS
-            # -------------------------------------------------
 
             for institution in parser_result.institutions:
 
@@ -75,29 +85,17 @@ class PersistenceService:
                     institution
                 )
 
-            # -------------------------------------------------
-            # POSITIONS
-            # -------------------------------------------------
-
             for position in parser_result.positions:
 
                 self.position_repository.save(
                     position
                 )
 
-            # -------------------------------------------------
-            # PERSONS
-            # -------------------------------------------------
-
             for person in parser_result.persons:
 
                 self.person_repository.save(
                     person
                 )
-
-            # -------------------------------------------------
-            # RELATIONSHIPS
-            # -------------------------------------------------
 
             relationships = (
                 self.relationship_resolver.resolve(
@@ -106,6 +104,7 @@ class PersistenceService:
             )
 
             relationship_count = 0
+            document_url_cache = {}
 
             for relationship in relationships:
 
@@ -115,17 +114,20 @@ class PersistenceService:
 
                 relationship_count += 1
 
-            # -------------------------------------------------
-            # COMMIT
-            # -------------------------------------------------
-            #
-            # The caller owns the transaction when a connection
-            # was injected.
-            #
-            # Therefore, only commit when this service created
-            # the connection itself.
-            #
-            # -------------------------------------------------
+                source_url = self._get_source_document_url(
+                    relationship.source_document_id,
+                    document_url_cache
+                )
+
+                citation = Source(
+                    person_id=relationship.person_id,
+                    source_name=relationship.person.primary_source or "",
+                    source_url=source_url,
+                    source_type="HTML",
+                    trust_score=relationship.person.confidence_score
+                )
+
+                self.source_repository.save(citation)
 
             if self._owns_connection:
                 self.connection.commit()
@@ -145,32 +147,12 @@ class PersistenceService:
 
         except Exception:
 
-            # -------------------------------------------------
-            # ROLLBACK
-            # -------------------------------------------------
-            #
-            # Only rollback when this service owns the
-            # transaction.
-            #
-            # If the connection was injected, the caller
-            # controls rollback.
-            #
-            # -------------------------------------------------
-
             if self._owns_connection:
                 self.connection.rollback()
 
             raise
 
     def close(self):
-
-        # -----------------------------------------------------
-        # CONNECTION OWNERSHIP
-        # -----------------------------------------------------
-        #
-        # Never close an externally supplied connection.
-        #
-        # -----------------------------------------------------
 
         if (
             self.connection is not None

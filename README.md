@@ -2,63 +2,78 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22232969.svg)](https://doi.org/10.5281/zenodo.22232969)
 
-An extensible data intelligence platform for collecting, normalizing, 
-resolving, validating, and analyzing publicly available institutional 
-information.
+A citation-backed data intelligence platform for collecting, normalizing,
+resolving, validating, and analyzing publicly available institutional
+information on Kenya's Politically Exposed Persons (PEPs).
 
-> **Status:** Active Development
-> **Current Focus:** National Assembly Data Integration
-> **Primary Source:** Parliament of Kenya
+> **Status:** Active dataset, 13 sources integrated
+> **Current dataset:** 775 active PEP records, citation-backed, across 14 institutions
+> **Primary purpose:** Feeding a Kenya PEP registry into a UN Sanctions Explorer portal
 
 ---
 
 ## Overview
 
-The Compliance Intelligence Platform is a modular data-ingestion and 
-intelligence system designed to transform publicly available institutional 
-information into structured, traceable, and reusable data.
+The Compliance Intelligence Platform is a modular data-ingestion and
+intelligence system that transforms publicly available institutional
+information into structured, traceable, citation-backed data suitable
+for compliance and sanctions-screening use cases.
 
-The platform is being developed with a strong emphasis on:
-
-* Reliable data acquisition
-* Structured data extraction
-* Data normalization
-* Entity resolution
-* Duplicate detection and merging
-* Source provenance
-* Validation
-* Auditability
-* Modular architecture
-* Testability
-* Maintainability
-
-The initial implementation focuses on integrating publicly available 
-information from the Parliament of Kenya, beginning with National Assembly 
-member data.
+Every person record in this dataset is backed by at least one citation
+row pointing to the literal source document it was extracted from --
+no record exists without a traceable origin.
 
 ---
 
-## Publication
+## Current Dataset
 
-This project is accompanied by a research and software publication 
-describing the
-architecture, engineering approach, data-ingestion methodology, and 
-development
-considerations of the platform.
+| Metric | Value |
+|---|---|
+| Active PEP records | 775 |
+| Tombstoned (merged duplicate) records | 2 |
+| Citation rows | 775 (1:1 coverage on all active records) |
+| Institutions covered | 14 |
+| Sources integrated | 13 |
 
-**DOI:** https://doi.org/10.5281/zenodo.22232969
+### Sources covered
 
-**Repository:** 
-https://github.com/saint-art/Compliance-Intelligence-Platform
+| Source | Records | Method |
+|---|---|---|
+| National Assembly | 347 | Playwright (JS-rendered), 36-page crawl |
+| High Court | 114 | Plain HTTP |
+| Senate | 67 | Plain HTTP, 7-page crawl |
+| Environment and Land Court | 62 | Plain HTTP |
+| Governors (Council of Governors) | 47 | Plain HTTP, single page |
+| Court of Appeal | 41 | Plain HTTP |
+| Cabinet | 24 | Plain HTTP |
+| Kenya Revenue Authority (KRA) | 20 | Plain HTTP |
+| Employment and Labour Relations Court | 17 | Plain HTTP |
+| Kenya Power and Lighting Company (KPLC) | 13 | Plain HTTP |
+| National Social Security Fund (NSSF) | 8 | Plain HTTP |
+| Presidency (Office of the President + Deputy President) | 8 | Plain HTTP, 2 pages |
+| Supreme Court | 7 | Plain HTTP |
 
-The published record provides a persistent scholarly reference for the 
-project
-and its associated research output.
+All five Judiciary court levels (Supreme Court, Court of Appeal, High
+Court, Employment and Labour Relations Court, Environment and Land
+Court) share a single generic parser (`parsers/judiciary_parser.py`),
+since all five use the same underlying WordPress team-member plugin
+markup -- only the institution name and job-title phrasing differ,
+and the parser normalizes both.
 
+### Known gaps (not sources of failure -- documented scope boundaries)
+
+| Gap | Reason |
+|---|---|
+| KenGen | Site returns a Cloudflare-style bot-detection challenge page; not reachable via plain HTTP |
+| Kenya Pipeline Company (KPC) | Board data loads via a WordPress AJAX/shortcode widget not present in static HTML; would need browser rendering to reach |
+| Central Bank of Kenya (CBK) | Site is behind a Sucuri Website Firewall returning HTTP 403 to automated requests |
+| Social Health Authority (SHA) | Not yet attempted |
+| County Assemblies (all 47) | Each county runs its own separate, structurally inconsistent website; scoped as a future phased rollout (5-county pilot), not started |
+| Family members / close associates of PEPs | Not yet started -- requires a higher evidentiary bar per person (2+ independent sources) before inclusion, per the platform's PEP taxonomy |
+
+---
 
 ## Architecture
-
-The platform follows a modular ingestion architecture:
 
 ```text
 Authoritative Source
@@ -67,7 +82,7 @@ Authoritative Source
 Crawler / Collector
         │
         ▼
-Raw Source Document
+Raw Source Document (immutable, content-addressed HTML snapshot)
         │
         ▼
 Parser
@@ -79,56 +94,79 @@ Cleaner / Normalizer
 Entity Resolver
         │
         ▼
-Merger / Deduplicator
+Merger / Deduplicator (tombstone pattern, audit-trail preserved)
         │
         ▼
 Validator
         │
         ▼
-Repository / Database
+Repository / Database (SQLite)
         │
         ▼
-Structured Intelligence Data
+Citation Layer (sources table -- every record traceable to its source URL)
+        │
+        ▼
+Export / API Layer
+        │
+        ▼
+UN Sanctions Explorer Integration
 ```
 
-The architecture is intentionally source-agnostic so that additional 
-institutional sources can be integrated without tightly coupling the core 
-platform to a single website.
+The architecture is source-agnostic: additional institutional sources
+can be integrated without coupling the core platform to any single
+website's structure.
 
 ---
 
-## Current Implementation
+## Entity Resolution
 
-The repository currently contains the foundations of the platform, 
-including:
+`tools/find_duplicate_persons.py` performs fuzzy name-similarity
+matching (with honorific/suffix normalization) across the full
+dataset to surface candidate duplicate person records for human
+review. It does not auto-merge anything -- in a compliance context,
+a false merge is worse than a missed one.
 
-* Source collectors
-* Browser-based collection support
-* Pagination handling
-* URL discovery
-* HTML parsers
-* Data models
-* Repository abstractions
-* Persistence services
-* Source-document tracking
-* Source-run tracking
-* Ingestion pipeline infrastructure
-* Entity and relationship resolution components
-* Pipeline validation infrastructure
-* Automated tests
-* Technical documentation foundation
+Two confirmed duplicates have been merged to date, using a tombstone
+pattern: the duplicate record's `entity_status` is set to `MERGED`
+and `merged_into_person_id` points to the canonical record. Nothing
+is ever deleted, preserving full audit trail.
 
-The current source integration work is focused on the Parliament of Kenya 
-and its National Assembly member directory.
+Known limitation: the similarity scoring is bag-of-words based and
+produces false positives among people who share common Kenyan or
+Somali-Kenyan name components (e.g. "Mohamed", "Abdi", "Joseph") --
+these are reviewed and correctly left unmerged. Cross-institution
+matches (e.g. an MP name resembling a judge's name) are structurally
+implausible given Kenya's separation-of-powers rules and can usually
+be dismissed without deep investigation.
 
-The Parliament integration has already undergone source discovery and HTML 
-inspection. The remaining work involves completing reliable member 
-extraction, normalization, validation, deduplication, persistence, and 
-source change detection.
+---
 
-The detailed implementation record is maintained in:
+## Citation / Provenance Layer
 
-`docs/Article_Implementation.md`
+Every person record persisted through the pipeline automatically
+receives a row in the `sources` table (`loaders/source_repository.py`,
+wired into `services/persistence_service.py`), citing:
+
+- `source_name` -- which institution/source produced this record
+- `source_url` -- the literal URL of the document it was extracted from
+- `trust_score` -- the extraction confidence score
+- `collected_at` / `last_verified` -- timestamps
+
+This is distinct from `source_documents` (the raw HTML snapshot audit
+log) and `source_runs` (collector execution history) -- the `sources`
+table is the compliance-facing citation a human reviewer or the
+Sanctions Explorer portal would check to verify a record's origin.
+
+---
+
+## Export & API Layer
+
+- `tools/export_dataset.py` generates a full JSON and CSV export of
+  the active dataset (`output/kenya_peps_export.json` /
+  `output/kenya_peps_export.csv`), including nested positions and
+  citations per person.
+- `app.py` exposes a REST API for live querying (see API section
+  below / in-code docstrings for endpoint details).
 
 ---
 
@@ -141,77 +179,38 @@ Compliance-Intelligence-Platform/
 ├── crawler/          Crawling and URL discovery
 ├── parsers/          Source document parsing
 ├── cleaners/         Data cleaning and normalization
-├── resolvers/        Entity and relationship resolution
-├── mergers/          Record merging and deduplication
-├── models/           Domain models
+├── resolvers/        Relationship ID resolution
+├── mergers/          Record merging and deduplication (scaffolded)
+├── models/           Domain models (Person, Position, Institution, Source, ...)
 ├── loaders/          Repository and persistence abstractions
 ├── database/         Database schema and persistence infrastructure
 ├── pipeline/         Ingestion pipeline orchestration
-├── services/         Application services
+├── services/         Application services (PersistenceService)
 ├── config/           Configuration and source definitions
 ├── utils/            Shared utilities and logging
-├── tools/            Investigation and source-discovery tools
+├── tools/            Investigation, dedup, backfill, and export tools
+├── dev_investigation/  One-off structure-inspection scripts from source onboarding
 ├── docs/             Architecture and engineering documentation
 │
 ├── main.py           Application entry point
-├── app.py            Application interface
+├── app.py            REST API (Flask)
 ├── requirements.txt  Python dependencies
-└── README.md         Project documentation
+└── README.md         This file
 ```
 
 ---
 
 ## Engineering Principles
 
-The platform is being developed around several core principles.
-
-### Source Provenance
-
-Data should remain traceable to the authoritative source from which it was 
-obtained.
-
-### Deterministic Processing
-
-Where possible, ingestion and transformation should produce predictable 
-and reproducible results.
-
-### Separation of Concerns
-
-Source-specific acquisition logic should remain separate from parsing, 
-normalization, resolution, persistence, and downstream intelligence.
-
-### Data Quality
-
-Extraction volume is secondary to correctness, validation, traceability, 
-and consistency.
-
-### Maintainability
-
-The system should be understandable and extensible by another developer 
-without requiring knowledge of the original implementation process.
-
-### Auditability
-
-Important source and processing information should be retained so that 
-data transformations can be investigated when necessary.
+- **Source Provenance** -- every record traces to its authoritative source (enforced by the citation layer).
+- **Deterministic Processing** -- ingestion and transformation are reproducible.
+- **Separation of Concerns** -- acquisition, parsing, normalization, resolution, and persistence stay decoupled.
+- **Data Quality Over Volume** -- correctness and traceability take priority over record count.
+- **Auditability** -- merges are tombstoned, never deleted; every parser fix in this project's history was verified against real fetched HTML before being trusted.
 
 ---
 
 ## Testing
-
-The project includes automated tests covering multiple parts of the 
-ingestion architecture, including:
-
-* Crawling
-* Source discovery
-* Collectors
-* Parsers
-* Pagination
-* Repositories
-* Source documents
-* Ingestion pipelines
-
-Tests can be run with:
 
 ```bash
 pytest
@@ -219,154 +218,54 @@ pytest
 
 ---
 
-## Documentation
+## Running the Pipeline
 
-Technical documentation is maintained under `docs/`.
+Each source has its own collector + parser pair. Example (Cabinet):
 
-Important documents include:
+```python
+from collectors.cabinet_collector import CabinetCollector
+from parsers.cabinet_parser import CabinetParser
+from pipeline.ingestion_pipeline import IngestionPipeline
 
-* `ARCHITECTURE.md` — System architecture
-* `DATABASE_DESIGN.md` — Database design
-* `SRS.md` — Software requirements specification
-* `ROADMAP.md` — Development roadmap
-* `BACKLOG.md` — Outstanding work
-* `CHANGELOG.md` — Development history
-* `SOURCE_REGISTRY.md` — Source registry documentation
-* `Article_Implementation.md` — Detailed Parliament integration 
-investigation and implementation record
+pipeline = IngestionPipeline(
+    collector=CabinetCollector(),
+    parser=CabinetParser()
+)
+result = pipeline.run()
+pipeline.close()
+```
 
----
+To regenerate the full export:
 
-## Current Development Status
+```bash
+python tools/export_dataset.py
+```
 
-The platform is actively under development.
+To scan for duplicate records:
 
-### Core Platform
-
-* [x] Modular project structure
-* [x] Domain models
-* [x] Repository layer
-* [x] Database infrastructure
-* [x] Ingestion pipeline foundation
-* [x] Collector abstractions
-* [x] Parser abstractions
-* [x] Source document tracking
-* [x] Source run tracking
-* [x] Automated test suite foundation
-* [x] Technical documentation
-
-### Parliament of Kenya Integration
-
-* [x] Identified authoritative source
-* [x] Discovered National Assembly member directory
-* [x] Retrieved source HTML
-* [x] Inspected source responses
-* [x] Investigated source variations
-* [x] Documented engineering findings
-* [ ] Complete member extraction
-* [ ] Normalize member records
-* [ ] Validate extracted records
-* [ ] Implement deterministic deduplication
-* [ ] Persist normalized records
-* [ ] Implement change detection
-* [ ] Complete integration testing
-* [ ] Finalize production integration
-
-The incomplete Parliament integration is intentionally documented rather 
-than hidden. The implementation record is maintained in 
-`docs/Article_Implementation.md` so that the work, discoveries, and 
-engineering decisions remain available for continued development.
-
----
-
-## Data Sources
-
-The platform is designed to prioritize authoritative public sources.
-
-The initial integration work uses publicly available information from the 
-Parliament of Kenya.
-
-Future integrations may include additional institutional sources where 
-appropriate and legally permissible.
+```bash
+python tools/find_duplicate_persons.py
+```
 
 ---
 
 ## Compliance and Responsible Data Use
 
-The platform is intended to process publicly available institutional 
-information.
-
-Development principles include:
-
-* Respecting applicable laws and regulations
-* Respecting source access policies
-* Avoiding unnecessary request volume
-* Avoiding attempts to bypass access controls
-* Minimizing unnecessary personal information
-* Maintaining source attribution
-* Preserving provenance
-* Maintaining appropriate audit trails
+This platform processes publicly available institutional information
+only. Development principles include respecting source access
+policies, avoiding unnecessary request volume, minimizing unnecessary
+personal information, maintaining source attribution, and preserving
+full provenance and audit trails throughout.
 
 ---
 
-## Technology
+## Publication
 
-The current implementation is primarily Python-based and uses a modular 
-architecture designed around:
-
-* Python
-* HTML parsing
-* Web data collection
-* SQLite/database persistence
-* Automated testing
-* Modular service and repository patterns
-
-Specific dependencies are maintained in `requirements.txt`.
+**DOI:** https://doi.org/10.5281/zenodo.22232969
+**Repository:** https://github.com/saint-art/Compliance-Intelligence-Platform
 
 ---
 
-## Development Philosophy
+## License
 
-This project is not intended to be a one-off scraper.
-
-The goal is to build a maintainable data-ingestion and intelligence 
-platform capable of incorporating multiple authoritative sources while 
-preserving provenance, data quality, and architectural separation.
-
-The long-term direction is:
-
-```text
-Authoritative Sources
-        ↓
-Reliable Acquisition
-        ↓
-Raw Data Preservation
-        ↓
-Extraction
-        ↓
-Normalization
-        ↓
-Validation
-        ↓
-Deduplication
-        ↓
-Entity Resolution
-        ↓
-Compliance Intelligence
-        ↓
-API / Search / Analysis
-```
-
----
-
-## Project Status
-
-**Active Development**
-
-The architecture and ingestion foundations are being developed 
-incrementally, with the Parliament of Kenya integration serving as the 
-first major source-specific implementation.
-
-Detailed implementation decisions and discoveries are documented 
-throughout the repository.
-
+MIT

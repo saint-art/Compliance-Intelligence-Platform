@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS persons (
     profile_url TEXT,
     image_url TEXT,
 
-    status TEXT
+    status TEXT,
+
+    merged_into_person_id INTEGER REFERENCES persons(person_id)
 );
 
 
@@ -234,7 +236,9 @@ CREATE TABLE IF NOT EXISTS source_runs (
 
     finished_at TEXT,
 
-    status TEXT
+    status TEXT,
+
+    merged_into_person_id INTEGER REFERENCES persons(person_id)
 );
 
 
