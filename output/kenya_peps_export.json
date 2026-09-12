@@ -1,5 +1,5 @@
 {
-  "export_generated_at": "2026-09-12T00:50:39.622541",
+  "export_generated_at": "2026-09-12T16:47:57.203695",
   "total_records": 775,
   "persons": [
     {
@@ -25,7 +25,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Mudavadi.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.890880",
-      "updated_at": "2026-09-09T18:38:57.890890",
+      "updated_at": "2026-09-12T16:41:40.278381",
       "positions": [
         {
           "title": "Prime Cabinet Secretary and Cabinet Secretary for Foreign and Diaspora Affairs",
@@ -43,8 +43,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.890931",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.523359",
+          "last_verified": "2026-09-12T16:41:40.308818"
         }
       ]
     },
@@ -71,7 +71,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Mukomen-1.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.891128",
-      "updated_at": "2026-09-09T18:38:57.891132",
+      "updated_at": "2026-09-12T16:41:40.278633",
       "positions": [
         {
           "title": "Interior and National Administration",
@@ -89,8 +89,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.891156",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.524562",
+          "last_verified": "2026-09-12T16:41:40.311289"
         }
       ]
     },
@@ -117,7 +117,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Davis-Chirchir.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.891337",
-      "updated_at": "2026-09-09T18:38:57.891341",
+      "updated_at": "2026-09-12T16:41:40.278846",
       "positions": [
         {
           "title": "Roads and Transport",
@@ -135,8 +135,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.891363",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.525154",
+          "last_verified": "2026-09-12T16:41:40.312072"
         }
       ]
     },
@@ -163,7 +163,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Joho.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.891537",
-      "updated_at": "2026-09-09T18:38:57.891540",
+      "updated_at": "2026-09-12T16:41:40.279066",
       "positions": [
         {
           "title": "Mining, Blue Economy and Maritime Affairs",
@@ -181,8 +181,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.891562",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.526034",
+          "last_verified": "2026-09-12T16:41:40.312633"
         }
       ]
     },
@@ -209,7 +209,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Aden-Duale.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.891733",
-      "updated_at": "2026-09-09T18:38:57.891737",
+      "updated_at": "2026-09-12T16:41:40.279275",
       "positions": [
         {
           "title": "Health",
@@ -227,8 +227,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.891759",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.527180",
+          "last_verified": "2026-09-12T16:41:40.312982"
         }
       ]
     },
@@ -255,7 +255,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/alice-wahome.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.891934",
-      "updated_at": "2026-09-09T18:38:57.891939",
+      "updated_at": "2026-09-12T16:41:40.279476",
       "positions": [
         {
           "title": "Lands, Public Works, Housing and Urban Development",
@@ -273,8 +273,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.892011",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.528364",
+          "last_verified": "2026-09-12T16:41:40.313518"
         }
       ]
     },
@@ -301,7 +301,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Alfred.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.892340",
-      "updated_at": "2026-09-09T18:38:57.892345",
+      "updated_at": "2026-09-12T16:41:40.279672",
       "positions": [
         {
           "title": "Labour and Social Protection",
@@ -319,8 +319,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.892368",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.529164",
+          "last_verified": "2026-09-12T16:41:40.313871"
         }
       ]
     },
@@ -347,7 +347,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Julius-Migosi.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.892555",
-      "updated_at": "2026-09-09T18:38:57.892559",
+      "updated_at": "2026-09-12T16:41:40.279873",
       "positions": [
         {
           "title": "Education",
@@ -365,8 +365,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.892581",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.534593",
+          "last_verified": "2026-09-12T16:41:40.314442"
         }
       ]
     },
@@ -393,7 +393,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Rebecca-Miano.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.892755",
-      "updated_at": "2026-09-09T18:38:57.892759",
+      "updated_at": "2026-09-12T16:41:40.280070",
       "positions": [
         {
           "title": "Tourism and Wildlife",
@@ -411,8 +411,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.892780",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.536540",
+          "last_verified": "2026-09-12T16:41:40.315522"
         }
       ]
     },
@@ -439,7 +439,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Salim-Mvurya-1.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.892966",
-      "updated_at": "2026-09-09T18:38:57.892969",
+      "updated_at": "2026-09-12T16:41:40.280268",
       "positions": [
         {
           "title": "Youth Affairs, Creative Economy and Sports",
@@ -457,8 +457,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.892992",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.538446",
+          "last_verified": "2026-09-12T16:41:40.315928"
         }
       ]
     },
@@ -485,7 +485,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Soipan-Tuya.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.893160",
-      "updated_at": "2026-09-09T18:38:57.893164",
+      "updated_at": "2026-09-12T16:41:40.280462",
       "positions": [
         {
           "title": "Defence",
@@ -503,8 +503,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.893185",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.539329",
+          "last_verified": "2026-09-12T16:41:40.316276"
         }
       ]
     },
@@ -531,7 +531,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/oparanya.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.893353",
-      "updated_at": "2026-09-09T18:38:57.893356",
+      "updated_at": "2026-09-12T16:41:40.280654",
       "positions": [
         {
           "title": "Co-operatives and Micro Small and Medium Enterprises (MSMEs) Development",
@@ -549,8 +549,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.893377",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.540929",
+          "last_verified": "2026-09-12T16:41:40.316614"
         }
       ]
     },
@@ -577,7 +577,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/John-Mbadi.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.893544",
-      "updated_at": "2026-09-09T18:38:57.893548",
+      "updated_at": "2026-09-12T16:41:40.280847",
       "positions": [
         {
           "title": "National Treasury and Economic Planning",
@@ -595,8 +595,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.893569",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.541636",
+          "last_verified": "2026-09-12T16:41:40.316950"
         }
       ]
     },
@@ -623,7 +623,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Eric-Murithi.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.893736",
-      "updated_at": "2026-09-09T18:38:57.893739",
+      "updated_at": "2026-09-12T16:41:40.281051",
       "positions": [
         {
           "title": "Water, Sanitation and Irrigation",
@@ -641,8 +641,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.893760",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.542355",
+          "last_verified": "2026-09-12T16:41:40.317284"
         }
       ]
     },
@@ -669,7 +669,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/DR-DEBORAH-MLONGO-BARASA-HEALTH-CS.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.893926",
-      "updated_at": "2026-09-09T18:38:57.893930",
+      "updated_at": "2026-09-12T16:41:40.281245",
       "positions": [
         {
           "title": "Environment, Climate Change & Forestry",
@@ -687,8 +687,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.893955",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.542700",
+          "last_verified": "2026-09-12T16:41:40.317617"
         }
       ]
     },
@@ -715,7 +715,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/1-2.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.894121",
-      "updated_at": "2026-09-09T18:38:57.894125",
+      "updated_at": "2026-09-12T16:41:40.281439",
       "positions": [
         {
           "title": "Investments, Trade and Industry",
@@ -733,8 +733,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.894145",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.543012",
+          "last_verified": "2026-09-12T16:41:40.317950"
         }
       ]
     },
@@ -761,7 +761,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/2-3.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.894310",
-      "updated_at": "2026-09-09T18:38:57.894314",
+      "updated_at": "2026-09-12T16:41:40.281630",
       "positions": [
         {
           "title": "Agriculture and Livestock Development",
@@ -779,8 +779,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.894335",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.543363",
+          "last_verified": "2026-09-12T16:41:40.318287"
         }
       ]
     },
@@ -807,7 +807,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Opiyo-Wandayi.png",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.894502",
-      "updated_at": "2026-09-09T18:38:57.894505",
+      "updated_at": "2026-09-12T16:41:40.281823",
       "positions": [
         {
           "title": "Energy and Petroleum",
@@ -825,8 +825,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.894526",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.543958",
+          "last_verified": "2026-09-12T16:41:40.319261"
         }
       ]
     },
@@ -853,7 +853,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/3-2.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.895176",
-      "updated_at": "2026-09-09T18:38:57.895185",
+      "updated_at": "2026-09-12T16:41:40.282014",
       "positions": [
         {
           "title": "Information Communication and the Digital Economy",
@@ -871,8 +871,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.895215",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.544288",
+          "last_verified": "2026-09-12T16:41:40.319683"
         }
       ]
     },
@@ -899,7 +899,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/RUKU.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.895429",
-      "updated_at": "2026-09-09T18:38:57.895433",
+      "updated_at": "2026-09-12T16:41:40.282203",
       "positions": [
         {
           "title": "Public Service and Human Capital Development",
@@ -917,8 +917,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.895456",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.544584",
+          "last_verified": "2026-09-12T16:41:40.320033"
         }
       ]
     },
@@ -945,7 +945,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Wanjau.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.895634",
-      "updated_at": "2026-09-09T18:38:57.895638",
+      "updated_at": "2026-09-12T16:41:40.282394",
       "positions": [
         {
           "title": "Secretary to the Cabinet",
@@ -963,8 +963,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.895660",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.544874",
+          "last_verified": "2026-09-12T16:41:40.320376"
         }
       ]
     },
@@ -991,7 +991,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/Beatrice-Askul-Profile.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.895831",
-      "updated_at": "2026-09-09T18:38:57.895835",
+      "updated_at": "2026-09-12T16:41:40.282586",
       "positions": [
         {
           "title": "East Africa Community and Regional Affairs",
@@ -1009,8 +1009,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.895857",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.545167",
+          "last_verified": "2026-09-12T16:41:40.320715"
         }
       ]
     },
@@ -1037,7 +1037,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/oduor-dorcas-profile.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.896029",
-      "updated_at": "2026-09-09T18:38:57.896032",
+      "updated_at": "2026-09-12T16:41:40.282784",
       "positions": [
         {
           "title": "Hon. Attorney-General",
@@ -1055,8 +1055,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.896053",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.545453",
+          "last_verified": "2026-09-12T16:41:40.321053"
         }
       ]
     },
@@ -1083,7 +1083,7 @@
       "image_url": "https://www.president.go.ke/wp-content/uploads/cheptumo.jpg",
       "status": "ACTIVE",
       "created_at": "2026-09-09T18:38:57.896227",
-      "updated_at": "2026-09-09T18:38:57.896230",
+      "updated_at": "2026-09-12T16:41:40.282986",
       "positions": [
         {
           "title": "Gender",
@@ -1101,8 +1101,8 @@
           "source_url": "https://www.president.go.ke/cabinet/",
           "source_type": "HTML",
           "trust_score": 97.0,
-          "collected_at": "2026-09-09T18:38:57.896252",
-          "last_verified": "2026-09-10T23:34:19.358381"
+          "collected_at": "2026-09-12T11:18:16.545735",
+          "last_verified": "2026-09-12T16:41:40.321391"
         }
       ]
     },

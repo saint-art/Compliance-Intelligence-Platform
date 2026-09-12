@@ -7,11 +7,17 @@ class SourceRepository(BaseRepository):
     """
     Persists citation records to the `sources` table.
 
-    Unlike PersonRepository/PositionRepository, this is
-    append-only by design: a person can legitimately have
-    multiple citation rows over time (e.g. re-verified on a
-    later date, or corroborated by a second source), so save()
-    always inserts rather than upserting.
+    save() is an upsert keyed on (person_id, source_name,
+    source_url): if an identical citation already exists, its
+    last_verified timestamp is refreshed in place rather than
+    inserting a duplicate row. This means re-running a pipeline
+    against unchanged source data (e.g. via a test suite, or a
+    scheduled re-check) does not silently accumulate duplicate
+    citations over time.
+
+    A genuinely new citation (different source_url, e.g. the
+    person moved to a new institution) still creates a new row,
+    preserving history rather than overwriting it.
     """
 
     def __init__(self, connection=None):
@@ -19,7 +25,57 @@ class SourceRepository(BaseRepository):
         self.cursor = self.connection.cursor()
         self.logger = get_logger("SourceRepository")
 
+    def find_existing(self, source: Source):
+
+        self.cursor.execute(
+            """
+            SELECT source_id
+            FROM sources
+            WHERE person_id = ?
+            AND source_name = ?
+            AND source_url = ?
+            LIMIT 1
+            """,
+            (
+                source.person_id,
+                source.source_name,
+                source.source_url
+            )
+        )
+
+        return self.cursor.fetchone()
+
     def save(self, source: Source):
+
+        existing = self.find_existing(source)
+
+        if existing:
+
+            existing_id = existing["source_id"]
+
+            self.cursor.execute(
+                """
+                UPDATE sources
+                SET last_verified = ?,
+                    trust_score = ?
+                WHERE source_id = ?
+                """,
+                (
+                    source.last_verified,
+                    source.trust_score,
+                    existing_id
+                )
+            )
+
+            source.source_id = existing_id
+
+            self.logger.info(
+                f"Citation already exists for person_id="
+                f"{source.person_id} -> {source.source_url}, "
+                f"refreshed last_verified."
+            )
+
+            return existing_id
 
         self.cursor.execute(
             """
