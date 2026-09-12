@@ -159,6 +159,21 @@ Sanctions Explorer portal would check to verify a record's origin.
 
 ---
 
+## Live Deployment
+
+**API base URL:** https://compliance-intelligence-platform-hncx.onrender.com
+
+This is a read-only Flask API serving the dataset described above.
+See `/` on that URL for a full list of endpoints. Any frontend
+(including the UN Sanctions Explorer) can consume this directly via
+`fetch()` -- CORS is enabled for this purpose. No code merge with
+the Sanctions Explorer is required; the portal can call this API as
+an external data source.
+
+Note: hosted on Render's free tier, which spins down after
+inactivity -- the first request after idle may take 20-30 seconds
+to wake the instance.
+
 ## Export & API Layer
 
 - `tools/export_dataset.py` generates a full JSON and CSV export of
